@@ -23,6 +23,8 @@ namespace cs2_rockthevote
 
     public partial class Plugin : BasePlugin, IPluginConfig<Config>
     {
+        public static Plugin Instance { get; private set; } = null;
+        
         public override string ModuleName => "RockTheVote";
 #if DEBUG
         public override string ModuleVersion => "1.9.6 (DEBUG)";
@@ -90,6 +92,7 @@ namespace cs2_rockthevote
 
         public override void Load(bool hotReload)
         {
+            Instance = this;
 #if DEBUG
             Logger.LogInformation($"Plugin loading... (hot reload: {hotReload})");
 #endif

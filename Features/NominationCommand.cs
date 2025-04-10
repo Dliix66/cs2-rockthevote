@@ -106,7 +106,7 @@ namespace cs2_rockthevote
     public class NominationCommand : IPluginDependency<Plugin, Config>
     {
         Dictionary<int, (string PlayerName, List<string> Maps)> Nominations = new();
-        ChatMenu? nominationMenu = null;
+        CenterHtmlMenu? nominationMenu = null;
         private RtvConfig _config = new();
         private GameRules _gamerules;
         private StringLocalizer _localizer;
@@ -147,10 +147,10 @@ namespace cs2_rockthevote
                 }, _mapCooldown.IsMapInCooldown(map.Name));
             }
 
-            nominationMenu.AddMenuOption("Exit", (CCSPlayerController player, ChatMenuOption option) =>
-            {
-                MenuManager.CloseActiveMenu(player);
-            });
+            //nominationMenu.AddMenuOption("Exit", (CCSPlayerController player, ChatMenuOption option) =>
+            //{
+            //    MenuManager.CloseActiveMenu(player);
+            //});
         }
 
         public void CommandHandler(CCSPlayerController? player, string map)
@@ -197,7 +197,7 @@ namespace cs2_rockthevote
 
         public void OpenNominationMenu(CCSPlayerController player)
         {
-            MenuManager.OpenChatMenu(player!, nominationMenu!);
+            MenuManager.OpenCenterHtmlMenu(Plugin.Instance, player!, nominationMenu!);
         }
 
         void Nominate(CCSPlayerController player, string map)
